@@ -1,5 +1,4 @@
-// this is a template for creating the class Matrix, as specified in
-// exercise 2
+// MA407 seminar 3
 //
 // java Matrix n m max 
 // generates the random n times m matrix a and the random m times m matrix b,
@@ -9,7 +8,13 @@ class Matrix {
 
     static int[][] randomMatrix (int n, int m, int max) {
         // see exercise 2.1
-        return null;
+        int[][] matrix = new int[n][m];
+        for (int i=0; i<n; i++) {
+            for (int j=0; j<m; j++) {
+                matrix[i][j] =  (int)(Math.random() * (max+1));
+            }
+        }
+        return matrix;
     }
 
     static int[][] product ( int[][] a, int[][] b) {
