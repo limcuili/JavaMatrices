@@ -63,6 +63,13 @@ class Matrix {
 
     static void transpose (int[][] matrix) {
         // see exercise 2.3
+        for (int i=0; i<matrix.length-1; i++) {
+            for (int j=i+1; j<matrix.length; j++) {
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[j][i];
+                matrix[j][i] = temp;
+            }
+        }
     }
 
     static void printMatrix ( String name, int[][] matrix) {
