@@ -1,6 +1,6 @@
 // MA407 seminar 3
-//
-// java Matrix n m max 
+// compile: javac Matrix.java
+// run: java Matrix n m max
 // generates the random n times m matrix a and the random m times m matrix b,
 // both with integer values in [0,max] and calculates a*b and b^T
 
@@ -17,9 +17,48 @@ class Matrix {
         return matrix;
     }
 
+    // Here we create a method that checks that the argument is a matrix.
+    static boolean isMatrix(int[][] a) {
+        if (a == null || a.length == 0) {
+            return false;
+        }
+        // a[0] is the first row of the matrix.
+        int number_of_columns = a[0].length;
+        if (number_of_columns == 0) {
+            return false;
+        }
+        for (int i = 1; i<a.length; i++) {
+            if (a[i].length != number_of_columns) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     static int[][] product ( int[][] a, int[][] b) {
         // see exercise 2.2
-        return null;
+        // this checks that a and b are matrices.
+        if (!isMatrix(a) || !isMatrix(b)) {
+            return null;
+        }
+        int a_rows = a.length;
+        int a_columns = a[0].length;
+        int b_rows = b.length;
+        int b_columns = b[0].length;
+        // this checks the matrix multiplication condition of matrix sizes.
+        if (a_columns != b_rows) {
+            return null;
+        }
+        int[][] c = new int[a_rows][b_columns];
+        for (int i=0; i<a_rows; i++) {
+            for (int k=0; k<b_columns; k++) {
+                c[i][k] = 0;
+                for (int j=0; j<a_columns; j++) {
+                    c[i][k] += a[i][j]*b[j][k];
+                }
+            }
+        }
+        return c;
     }
 
     static void transpose (int[][] matrix) {
